@@ -8,28 +8,39 @@
           </IonToolbar>
       </IonHeader>
     <IonContent class="ion-padding">
+        <div class="flex justify-center">
+            <img src="/bismillah.png" alt="Bismilah" class="h-32">
+        </div>
         <IonList>
             <IonListHeader>Pilih Kelas:</IonListHeader>
-            <IonItem v-for="k in 6" @click="goto(k)">
+            <IonItem v-for="k in ['Satu', 'Dua', 'Tiga', 'Empat', 'Lima', 'Enam']" @click="goto(k)">
                 Kelas {{ k }}
             </IonItem>
         </IonList>
-
         <img src="/home/bocil.png" alt="">
+        <IonToast
+            :isOpen="toastOpen"
+            :message="toastMessage"
+            :duration="2000"
+            @didDismiss="toastOpen = false"
+            ></IonToast>
     </IonContent>
     
 </template>
 
 <script setup>
 import { useRouter, useRoute } from 'vue-router';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonIcon, IonList, IonItem, IonLabel, IonButton, IonListHeader, IonFooter, IonBackButton } from '@ionic/vue';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonIcon, IonList, IonItem, IonLabel, IonButton, IonListHeader, IonFooter, IonBackButton, IonToast } from '@ionic/vue';
 import { onMounted, ref } from 'vue';
 
 const router = useRouter()
 const route = useRoute()
-
+const toastOpen = ref(false)
+const toastMessage = ref('')
 const goto = (k) => {
-    alert(k)
+    toastMessage.value = 'Kamu memilih Kelas ' + k
+    toastOpen.value = true
+    router.push('/kelas/'+k)
 }
 
 onMounted(() => {

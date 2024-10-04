@@ -6,9 +6,15 @@ import IndexKelas from "../views/IndexKelas.vue"
 
 const routes = [
   { path: "/", component: HomePage },
-  { path: "/kelas", component: IndexKelas },
   { path: "/about", component: AboutPage },
-  { path: "/kelas/1", component: IndexKelas},
+  { 
+    path: "/kelas", 
+    component: IndexKelas,
+  },
+  { 
+    path: "/kelas/Satu", 
+    component: Kelas1,
+  },
 ];
 
 const router = createRouter({
