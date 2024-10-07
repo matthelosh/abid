@@ -16,32 +16,57 @@
       <h5 class="text-center leading-4">
         Aplikasi Belajar Interaktif Digital
       </h5>
-      <div class="flex justify-center">
-        <IonButton class="mt-40 mx-auto" @click="goToIndex">Pilih Kelas</IonButton>
-      </div>
+    </div>
+    <div class="flex justify-center transition-all duration-300" v-if="showStart">
+      <IonButton class="mt-40 mx-auto" @click="goToIndex">Pilih Kelas</IonButton>
     </div>
   </div>
+  <IonFab slot="fixed" vertical="top" horizontal="end">
+    <IonFabButton @click="showSetting">
+      <IonIcon :icon="settings " />
+    </IonFabButton>
+  </IonFab>
+  <IonToast :isOpen="toast.open" :duration="1000" :message="toast.message" @didDismiss="toast.open=false" />
+  <ApiSetting v-if="settingForm" :show="settingForm" @close="closeSetting" />
 </ion-content>
 </template>
 
 <script setup>
 import { useRouter, useRoute } from 'vue-router';
-import { IonContent, IonList, IonItem, IonLabel, IonButton, IonListHeader } from '@ionic/vue';
-import { onMounted, ref } from 'vue';
-
+import { IonContent, IonList, IonItem, IonLabel, IonButton, IonListHeader, IonFab, IonFabButton, IonIcon, IonToast } from '@ionic/vue';
+import { onMounted, reactive, ref } from 'vue';
+import { settings } from 'ionicons/icons'
+import ApiSetting from '../components/ApiSetting.vue';
 const router = useRouter()
 const route = useRoute()
 const showAwan1 = ref(false)
 const showAwan2 = ref(false)
-const showMasjid = ref(false)
+const showStart = ref(false)
 const showBocil = ref(false)
 const showTitle= ref(false)
-
+const toast = reactive({
+  open:false,
+  message: ''
+})
 const goToIndex = () => {
   router.push('/kelas')
 }
 
+const settingForm = ref(false)
+const showSetting = () => {
+  settingForm.value = true
+}
+
+const closeSetting = (e = null) => {
+  toast.open = true
+  toast.message = e == null ? 'Alamat API Server belum disimpan' : `Alamat Server: ${e}`
+  settingForm.value = false
+}
+
 onMounted(() => {
+  setTimeout(() => {
+    showStart.value = true
+  }, 800)
   setTimeout(() => {
     showAwan1.value = true
   }, 1000)
@@ -50,7 +75,7 @@ onMounted(() => {
   }, 1500)
   setTimeout(() => {
     showTitle.value = true
-  }, 3000)
+  }, 1000)
 })
 </script>
 

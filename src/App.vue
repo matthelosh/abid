@@ -1,16 +1,16 @@
 <template>
   <ion-app>
     <RouterView></RouterView>
-    <ion-footer>
+    <!-- <ion-footer>
       <div class="px-4 py-2 flex items-center gap-1">
-        <div class="w-4 h-4 rounded-full" :class="netStat.connected ? 'bg-green-500' : 'bg-red-500'"></div>
-        <small>{{ netStat.connected ? 'Daring' : 'Luring' }}</small>
+        <div class="w-4 h-4 rounded-full" :class="netStat?.connected ? 'bg-green-500' : 'bg-red-500'"></div>
+        <small>{{ netStat?.connected ? 'Daring' : 'Luring' }}</small>
       </div>
-    </ion-footer>
+    </ion-footer> -->
   </ion-app>
 </template>
 
-<script lang="ts" setup>
+<script setup>
   import { IonApp, IonFooter } from '@ionic/vue';
   import { Network } from '@capacitor/network';
   import { defineComponent, onBeforeMount, ref } from 'vue';

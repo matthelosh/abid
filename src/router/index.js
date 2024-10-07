@@ -1,22 +1,26 @@
 import { createRouter, createWebHistory } from "@ionic/vue-router";
-import HomePage from "../views/HomePage.vue";
 import AboutPage from "../views/AboutPage.vue";
-import Kelas1 from "../views/Kelas1/Index.vue"
-import IndexKelas from "../views/IndexKelas.vue"
 
 const routes = [
-  { path: "/", component: HomePage },
+  { path: "/", component: () => import('../views/HomePage.vue') },
   { path: "/about", component: AboutPage },
   { 
     path: "/kelas", 
-    component: IndexKelas,
+    component: ()=> import('../views/IndexKelas.vue'),
   },
-  { 
-    path: "/kelas/Satu", 
-    component: Kelas1,
+  {
+    path: '/kelas/:kelas',
+    component: ()=> import('../views/ShowKelas.vue')
   },
+  {
+    path: '/kelas/:kelas/bab/:bab',
+    component: ()=> import('../views/ShowMateri.vue')
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    component: () => import('../views/NotFound.vue')
+  }
 ];
-
 const router = createRouter({
   history: createWebHistory(),
   routes,

@@ -13,7 +13,7 @@
         </div>
         <IonList>
             <IonListHeader>Pilih Kelas:</IonListHeader>
-            <IonItem v-for="k in ['Satu', 'Dua', 'Tiga', 'Empat', 'Lima', 'Enam']" @click="goto(k)">
+            <IonItem v-for="k in 6" @click="goto(k)">
                 Kelas {{ k }}
             </IonItem>
         </IonList>
