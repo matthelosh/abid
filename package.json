@@ -17,9 +17,10 @@
     "@capacitor/network": "^6.0.2",
     "@capacitor/storage": "^1.2.5",
     "@iconify/vue": "^4.1.2",
-    "@ionic/vue": "^8.3.2",
-    "@ionic/vue-router": "^8.3.2",
+    "@ionic/vue": "^8.4.0",
+    "@ionic/vue-router": "^8.4.0",
     "ionicons": "^7.4.0",
+    "swiper": "^11.1.14",
     "vue": "^3.4.37",
     "vue-router": "^4.4.5"
   },
@@ -29,6 +30,7 @@
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.13",
+    "typescript": "^5.6.2",
     "vite": "^5.4.1"
   }
 }

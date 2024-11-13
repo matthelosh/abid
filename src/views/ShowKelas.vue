@@ -1,75 +1,95 @@
 <template>
-<ion-header>
+  <ion-header>
     <ion-toolbar>
       <ion-buttons slot="start">
         <ion-back-button :default-href="'/'"></ion-back-button>
       </ion-buttons>
-      <ion-title>Materi Kelas {{ params.kelas }}</ion-title>
+      <ion-title>Materi</ion-title>
     </ion-toolbar>
-</ion-header>
+  </ion-header>
   <IonContent>
-    <IonList>
-        <IonListHeader>
-            <IonLabel>Pilih Bab:</IonLabel>
-        </IonListHeader>
-        <IonItem v-for="(bab, b) in babs.data" button @click="lihatMateri(bab)">
-            <IonLabel>{{ bab.label }}</IonLabel>
-        </IonItem>
+    <IonList v-if="loading">
+      <IonListHeader>
+        <IonSkeletonText :animated="true" class="h-4 w-28" />
+      </IonListHeader>
+      <IonItem v-for="i in 10">
+        <IonSkeletonText :animated="true" class="h-2 w-[90%]" />
+      </IonItem>
     </IonList>
 
-    <IonList v-if="loading">
-      <IonItem v-for="i in 10">
-        <IonSkeletonText :animated="true" style="height: 20px;"></IonSkeletonText>
+    <IonList v-else>
+      <IonListHeader>
+        <IonTitle>
+          <h4>
+            Pilih Bab:
+          </h4>
+        </IonTitle>
+      </IonListHeader>
+      <IonItem v-for="(bab,b) in babs" button @click="lihatMateri(bab)">
+        <IonTitle>{{ bab.label }}</IonTitle>
       </IonItem>
     </IonList>
   </IonContent>
-  
 </template>
 
 <script setup>
-import { computed, onBeforeMount , reactive, ref} from 'vue';
-import { Storage } from '@capacitor/storage';
-import { Http } from '@capacitor-community/http';
-import { useRoute, useRouter } from 'vue-router';
-import { IonBackButton, IonItem, IonTitle, IonButtons, IonHeader, IonToolbar, IonContent, IonList, IonListHeader, IonLabel, IonLoading, IonSkeletonText } from '@ionic/vue';
+import { computed, onMounted, reactive, ref } from "vue";
+import { CapacitorHttp } from "@capacitor/core";
+import { useRoute, useRouter } from "vue-router";
+import {
+  IonBackButton,
+  IonItem,
+  IonTitle,
+  IonButtons,
+  IonHeader,
+  IonToolbar,
+  IonContent,
+  IonList,
+  IonListHeader,
+  IonLabel,
+  IonLoading,
+  IonSkeletonText,
+} from "@ionic/vue";
 
-const loading = ref(false)
-const apiServer = ref('')
-const route = useRoute()
-const router = useRouter()
-const params = computed(() => route.params)
+const loading = ref(false);
+const route = useRoute();
+const router = useRouter();
+const params = computed(() => route.params);
 const error = reactive({
   isError: false,
-  message: 'Pesan'
-})
+  message: "Pesan",
+});
 
-const babs = ref([])
+const babs = ref([]);
 const HttpOptions = {
-    url: '',
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
+  url: "",
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+  },
+};
 
 const lihatMateri = (bab) => {
-    router.push(`/kelas/${bab.tingkat}/bab/${bab.id}`)
-}
+  router.push(`/kelas/${bab.tingkat}/bab/${bab.id}`);
+};
 
-onBeforeMount(async() => {
-    const server = await Storage.get({key: 'apiServer'})
-    apiServer.value = server
-    loading.value = true
-    HttpOptions.url = server.value+'/api/abid/bab?kelas='+params.value.kelas
-    babs.value = await Http.request(HttpOptions)
-            .catch(err => {
-                if (err.message.includes('Failed to fetch')) {
-                    error.isError = true
-                    error.message = 'Tidak terhubung dengan server. Cek pengaturan atau koneksi internet'
-                }
-            })
-            .finally(() => loading.value = false)
-
-})
-
+onMounted(async () => {
+  
+  loading.value = true;
+  HttpOptions.url = import.meta.env.VITE_API_URI + "/api/abid/bab?kelas=" + params.value.kelas;
+  await CapacitorHttp.get(HttpOptions)
+    .then((res) => {
+      babs.value = res.data;
+    })
+    .catch((err) => {
+      if (err.message.includes("Failed to fetch")) {
+        error.isError = true;
+        error.message =
+          "Tidak terhubung dengan server. Cek pengaturan atau koneksi internet";
+      }
+      console.log(err);
+    })
+    .finally(() => (loading.value = false));
+});
 </script>
+

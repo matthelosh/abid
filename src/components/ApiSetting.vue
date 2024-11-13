@@ -3,11 +3,13 @@
       <ion-header>
         <ion-toolbar>
           <ion-buttons slot="start">
-            <ion-button @click="cancel()" color="danger">Batal</ion-button>
+            <ion-button @click="cancel()" color="danger" size="large">Batal</ion-button>
           </ion-buttons>
-          <ion-title>Welcome</ion-title>
+          <ion-title>
+            <h5 class="text-center">API Server</h5>
+          </ion-title>
           <ion-buttons slot="end">
-            <ion-button :strong="true" @click="confirm()" color="primary">Simpan</ion-button>
+            <ion-button :strong="true" @click="confirm()" color="primary" size="large">Simpan</ion-button>
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
@@ -20,6 +22,7 @@
             type="text"
             placeholder="Masukkan alamat server"
             :value="apiServer"
+            size="large"
           ></ion-input>
         </ion-item>
       </ion-content>
@@ -71,7 +74,14 @@ import {
   onBeforeMount(async() => {
     let storedApiServer = await Storage.get({key: 'apiServer'})
     // Storage.remove({key: 'apiServer'})
-    apiServer.value = storedApiServer.value ?? 'Masukkan Alamat Server'
+    apiServer.value = storedApiServer.value ?? 'https://abid.kkgpaiwagir.or.id'
     
   })
 </script>
+
+<style scoped>
+ion-input {
+  height: 64px!important;
+  font-size: large;
+}
+</style>

@@ -266,10 +266,10 @@
     debug "^4.0.0"
     tslib "^2.0.1"
 
-"@ionic/core@8.3.2":
-  version "8.3.2"
-  resolved "https://registry.yarnpkg.com/@ionic/core/-/core-8.3.2.tgz#e6389508e9fd6f03a82de74e48dd0edef47190cc"
-  integrity sha512-ptiDXnn4131eKpY862lv7c9xxjly7vi4O+WWCES78E+hXHvTEAundcA5F8eQyb0MFIFvCnOxreTZjRJJnHqPYw==
+"@ionic/core@8.4.0":
+  version "8.4.0"
+  resolved "https://registry.yarnpkg.com/@ionic/core/-/core-8.4.0.tgz#7ecc83ae18af061a40990b7ab21e3a13c1f93466"
+  integrity sha512-mZ2Ni9QByFGWBNr5W/F/nyPV+cXLhK+6W5BRziy7QPX6YIS57KH8FpY+CjE7BEcpE78anyY49bZt3eOWcES02g==
   dependencies:
     "@stencil/core" "4.20.0"
     ionicons "^7.2.2"
@@ -395,19 +395,19 @@
     untildify "^4.0.0"
     wrap-ansi "^7.0.0"
 
-"@ionic/vue-router@^8.3.2":
-  version "8.3.2"
-  resolved "https://registry.yarnpkg.com/@ionic/vue-router/-/vue-router-8.3.2.tgz#7f68bdadf97d4b2afc6d5a4764cd4b31e222ef50"
-  integrity sha512-mOTQD+CtvPyREUvxIpQfZAZ/JGGqS8XcwwNSb3CXEQnyufqhJVceEyZV6B5HCWhyeOTNeD8pEHXvoC41kYaF5A==
+"@ionic/vue-router@^8.4.0":
+  version "8.4.0"
+  resolved "https://registry.yarnpkg.com/@ionic/vue-router/-/vue-router-8.4.0.tgz#853b3c27385d59a9e99b7868629ca13c3d0912ff"
+  integrity sha512-g9cLVES3svWnhLbZI4qRTlk2PbbdNB+xAjaMAUGVNZqJRMhIzU3vs4Wiazmd90Bwx39bgr/1o2TPYWzDt1yw0g==
   dependencies:
-    "@ionic/vue" "8.3.2"
+    "@ionic/vue" "8.4.0"
 
-"@ionic/vue@8.3.2", "@ionic/vue@^8.3.2":
-  version "8.3.2"
-  resolved "https://registry.yarnpkg.com/@ionic/vue/-/vue-8.3.2.tgz#de1e0a954f7d9c8a8802e394430601f2e76f2e4e"
-  integrity sha512-r9BsWqOlv34d8dPyWgXvh4ZXyKtZBO2dM4aEvJCLcFBC76gtBFARExKKMc3Ji/nLgl8eGoodhfjhwwAaiMSmYg==
+"@ionic/vue@8.4.0", "@ionic/vue@^8.4.0":
+  version "8.4.0"
+  resolved "https://registry.yarnpkg.com/@ionic/vue/-/vue-8.4.0.tgz#41e7c1f777864ab615d315599f330778438c8485"
+  integrity sha512-mtSerl9oC21d6xv1q+QuGm61IzJbqpkWbt0lQryXZ3kK1/aVVOnHAN5bX8tPPUN2ALA7CyTWXaCvhxceRV/paA==
   dependencies:
-    "@ionic/core" "8.3.2"
+    "@ionic/core" "8.4.0"
     ionicons "^7.0.0"
 
 "@isaacs/cliui@^8.0.2":
@@ -1813,6 +1813,11 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
+swiper@^11.1.14:
+  version "11.1.14"
+  resolved "https://registry.yarnpkg.com/swiper/-/swiper-11.1.14.tgz#7901b4955c46dd0ad76fac1e9de2a69f04f34abb"
+  integrity sha512-VbQLQXC04io6AoAjIUWuZwW4MSYozkcP9KjLdrsG/00Q/yiwvhz9RQyt0nHXV10hi9NVnDNy1/wv7Dzq1lkOCQ==
+
 tailwindcss@^3.4.13:
   version "3.4.13"
   resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.4.13.tgz#3d11e5510660f99df4f1bfb2d78434666cb8f831"
@@ -1900,6 +1905,11 @@ tslib@^2.0.1, tslib@^2.1.0, tslib@^2.4.0, tslib@^2.6.2:
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.7.0.tgz#d9b40c5c40ab59e8738f297df3087bf1a2690c01"
   integrity sha512-gLXCKdN1/j47AiHiOkJN69hJmcbGTHI0ImLmbYLHykhgeN0jVGola9yVjFgzCUklsZQMW55o+dW7IXv3RCXDzA==
+
+typescript@^5.6.2:
+  version "5.6.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.6.2.tgz#d1de67b6bef77c41823f822df8f0b3bcff60a5a0"
+  integrity sha512-NW8ByodCSNCwZeghjN3o+JX5OFH0Ojg6sadjEKY4huZ52TqbJTJnDo5+Tw98lSy63NZvi4n+ez5m2u5d4PkZyw==
 
 undici-types@~6.19.2:
   version "6.19.8"

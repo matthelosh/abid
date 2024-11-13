@@ -23,6 +23,7 @@
     netStat.value = await Network.getStatus()
   }
   onBeforeMount(() => {
+    // Storage.set({key: 'apiServer', value: 'https://abid.kkgpaiwagir.or.id'})
     getNetStat()
   })
 </script>

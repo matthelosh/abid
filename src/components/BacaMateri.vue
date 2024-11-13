@@ -1,10 +1,9 @@
 <template>
     <h3 class="text-sky-700 font-bold mb-4">{{ props.materi.title }}</h3>
-    <IonImg :src="props.materi.cover"></IonImg>
+    <IonImg :src="materi.cover" @ionError="imgError"></IonImg>
     <IonText >
         <div class="text-justify mt-4" v-html="materi.content"></div>
     </IonText>
-    <div class="end my-4">tes</div>
 </template>
     
 <script setup>
@@ -12,4 +11,9 @@
     import { ref, onBeforeMount, computed, defineAsyncComponent } from 'vue';
 
     const props = defineProps(({materi: Object}))
+
+    const apiUri = computed(() => import.meta.env.VITE_API_URI)
+    const imgError = (e) => {
+        return e.target.src = '/public/ABID.png'
+    }
 </script>

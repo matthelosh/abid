@@ -12,9 +12,15 @@
             <img src="/bismillah.png" alt="Bismilah" class="h-32">
         </div>
         <IonList>
-            <IonListHeader>Pilih Kelas:</IonListHeader>
-            <IonItem v-for="k in 6" @click="goto(k)">
-                Kelas {{ k }}
+            <IonListHeader>
+                <h4>
+                    Pilih Kelas:
+                </h4>
+            </IonListHeader>
+            <IonItem v-for="k in 6" @click="goto(k)" button >
+                <h5 class="py-2">
+                    Kelas {{ k }}
+                </h5>
             </IonItem>
         </IonList>
         <img src="/home/bocil.png" alt="">

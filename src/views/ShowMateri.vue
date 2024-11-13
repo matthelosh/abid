@@ -11,7 +11,7 @@
     <ion-content>
         <ion-list>
             <ion-list-header>
-                <ion-label>Pilih Materi:</ion-label>
+                <ion-title>Pilih Materi:</ion-title>
             </ion-list-header>
             <ion-item
                 v-for="(materi,m) in materis.data"
@@ -22,15 +22,26 @@
                 <ion-label>{{ materi.title }}</ion-label>
             </ion-item>
         </ion-list>
+        <IonList v-if="loading">
+            <IonItem v-for="i in 10">
+                <IonSkeletonText style="height:20px"></IonSkeletonText>
+            </IonItem>
+        </IonList>
+        <div class="flex items-center justify-center bg-red-50 py-6 mx-4 rounded border border-red-700" v-if="!loading && materis?.data?.length < 1">
+            <article>
+                <h5 class="text-center text-red-700">Belum ada materi</h5>
+                <p class="text-center">Pantau terus ya..</p>
+            </article>
+        </div>
     </ion-content>
 </div>
 <Materi v-else :materi="selectedMateri" @close="closeMateri" />
 </template>
 
 <script setup>
-import { IonButtons, IonBackButton, IonHeader, IonAlert, IonTitle, IonToolbar, IonContent, IonList, IonListHeader, IonLabel, IonItem, IonToast, IonSpinner } from '@ionic/vue';
+import { IonButtons, IonBackButton, IonHeader, IonAlert, IonTitle, IonToolbar, IonContent, IonList, IonListHeader, IonLabel, IonItem, IonToast, IonSpinner, IonSkeletonText } from '@ionic/vue';
 import { ref, reactive, defineAsyncComponent, computed, onBeforeMount } from 'vue';
-import { Http } from '@capacitor-community/http';
+import { CapacitorHttp } from '@capacitor/core';
 import NotFound from '../components/NotFound.vue';
 
 import { useRouter, useRoute } from 'vue-router';
@@ -42,7 +53,6 @@ const selectedMateri = ref(null)
 const router = useRouter()
 const route = useRoute()
 const materis = ref([])
-const apiServer = ref(null)
 const loading = ref(false)
 const params = computed(() => {
     return route.params
@@ -79,11 +89,6 @@ const open = (num) => {
     router.push(`/kelas/${params.value.kelas}/bab/${num}`)
 }
 
-// const apiServer = computed(async() => {
-//     const server = await Storage.get({key: 'apiServer'})
-//     return server.value
-// })
-
 const HttpOptions = {
     url: '',
     method: 'GET',
@@ -93,11 +98,9 @@ const HttpOptions = {
   };
 
 onBeforeMount(async() => {
-    const server = await Storage.get({key: 'apiServer'})
-    apiServer.value = server
     loading.value = true
-    HttpOptions.url = server.value+'/api/abid/materi?bab='+params.value.bab
-    materis.value = await Http.request(HttpOptions)
+    HttpOptions.url = import.meta.env.VITE_API_URI +'/api/abid/materi?bab='+params.value.bab
+    materis.value = await CapacitorHttp.get(HttpOptions)
             .catch(err => {
                 if (err.message.includes('Failed to fetch')) {
                     error.isError = true

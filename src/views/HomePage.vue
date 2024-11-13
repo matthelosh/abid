@@ -11,14 +11,14 @@
     <img src="/home/burung.png" alt="Mentari" class="burung absolute right-[20%] top-[19%] w-[80px]">
     <img src="/home/masjid.png" alt="Mentari" class="masjid absolute bottom-0  w-full">
     <img src="/home/bocil.png" alt="Mentari" class="bocil absolute bottom-0  w-[25%] right-4">
-    <div class="content w-full py-24 transition-opacity linear duration-300" v-if="showTitle">
+    <div class="content w-full py-24 transition-opacity linear duration-300 z-40" v-if="showTitle">
       <h3 class="text-center leading-4 font-black text-4xl">ABID</h3>
       <h5 class="text-center leading-4">
         Aplikasi Belajar Interaktif Digital
       </h5>
     </div>
     <div class="flex justify-center transition-all duration-300" v-if="showStart">
-      <IonButton class="mt-40 mx-auto" @click="goToIndex">Pilih Kelas</IonButton>
+      <IonButton size="large" class="mt-24 mx-auto" @click="goToIndex">Pilih Kelas</IonButton>
     </div>
   </div>
   <IonFab slot="fixed" vertical="top" horizontal="end">
@@ -34,7 +34,7 @@
 <script setup>
 import { useRouter, useRoute } from 'vue-router';
 import { IonContent, IonList, IonItem, IonLabel, IonButton, IonListHeader, IonFab, IonFabButton, IonIcon, IonToast } from '@ionic/vue';
-import { onMounted, reactive, ref } from 'vue';
+import { computed, onMounted, reactive, ref } from 'vue';
 import { settings } from 'ionicons/icons'
 import ApiSetting from '../components/ApiSetting.vue';
 const router = useRouter()
@@ -56,6 +56,8 @@ const settingForm = ref(false)
 const showSetting = () => {
   settingForm.value = true
 }
+
+// const apiUri = computed(() => import.meta.env.VITE_API_URI)
 
 const closeSetting = (e = null) => {
   toast.open = true
