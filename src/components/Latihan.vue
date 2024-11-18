@@ -1,13 +1,13 @@
 <template>
-    <ion-page>
-        <ion-content>
-            <swiper  :active-index="activeIndex" :modules="modules" :pagination="{clickable: true }" :scrollbar="{ draggable: true }" :keyboard="true" :zoom="true" >
-                <SwiperSlide v-for="(soal,s) in props.materi?.soals" :key="s">
-                    <IonCard color="secondary" style="width: 100%">
+    <ion-page class="mb-12">
+        <ion-content >
+            
+            <template v-for="(soal, s) in props.materi?.soals" :key="`soal-${s}`">
+                <IonCard color="secondary" style="width: 90%" class="mx-auto">
                         <IonCardHeader>
-                            <IonCardTitle>
-                                <IonChip color="light">
-                                    <h3 class="font-bold">{{ s+1 }}</h3>
+                            <IonCardTitle class="flex justify-center" >
+                                <IonChip color="light"  style="margin:auto;">
+                                    <h3 class="font-bold text-center" style="">{{ s+1 }}</h3>
                                 </IonChip>
                             </IonCardTitle>
                         </IonCardHeader>
@@ -23,11 +23,9 @@
                             </IonList>
                         </IonCardContent>
                     </IonCard>
-                </SwiperSlide>
-            </swiper>
-
-            <div class="end mt-2 mb-14 flex justify-center">
-                <IonButton color="secondary" id="btn-cek" @click="cekJawaban" v-if="showCheckButton">Cek Jawaban</IonButton>
+            </template>
+            <div class="end mt-2 mb-14 flex justify-center" >
+                <IonButton color="secondary" id="btn-cek" @click="cekJawaban" :disabled="!showCheckButton">Cek Jawaban</IonButton>
             </div>
         </ion-content>
     </ion-page>

@@ -1,9 +1,11 @@
 <template>
-    <h3 class="text-sky-700 font-bold mb-4">{{ props.materi.title }}</h3>
-    <IonImg :src="materi.cover" @ionError="imgError"></IonImg>
-    <IonText >
-        <div class="text-justify mt-4" v-html="materi.content"></div>
-    </IonText>
+    <div class="px-4 pb-8 mb-10">
+        <h3 class="text-sky-700 font-bold mb-4">{{ props.materi.title }}</h3>
+        <IonImg :src="materi.cover" @ionError="imgError"></IonImg>
+        <IonText >
+            <div class="text-justify mt-4" v-html="materi.content"></div>
+        </IonText>
+    </div>
 </template>
     
 <script setup>

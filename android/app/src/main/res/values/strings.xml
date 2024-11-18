@@ -4,4 +4,5 @@
     <string name="title_activity_main">abid</string>
     <string name="package_name">id.or.kkgpaiwagir.abid</string>
     <string name="custom_url_scheme">id.or.kkgpaiwagir.abid</string>
+    <string name="admob_app_id">ca-app-pub-4782635054811917~6940681041</string>
 </resources>
